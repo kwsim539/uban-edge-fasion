@@ -11,7 +11,7 @@ const MainWrapper = () => {
                         <MainLogo className="logo" />
                     </Link>
                     <nav className="main-nav">
-                        <ul className="nav" role="main-nav">
+                        <ul className="nav" role="menu">
                             <li className="nav-item"><Link className="nav-link" to="/shop">Shop</Link></li>
                             <li className="nav-item"><Link className="nav-link" to="/account">Account</Link></li>
                         </ul>
