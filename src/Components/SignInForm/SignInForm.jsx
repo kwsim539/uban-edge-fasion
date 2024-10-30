@@ -23,6 +23,7 @@ const SignInForm = () => {
     const signInWithGoogle = async () => {
         const {user} = await signInWithGooglePopup();
         await createUserDocFromAuth(user);
+        console.log(user);
     }
 
     const handleOnSubmit = async (e) => {
@@ -34,6 +35,13 @@ const SignInForm = () => {
             handleFormReset();
 
         } catch (error) {
+            switch (error.code) {
+                case 'auth/invalid-credential':
+                    alert("There was a problem your email or password. Please try again.");
+                    break;
+                default:
+                    console.log(error);
+            }
 
         }
     }
@@ -49,7 +57,7 @@ const SignInForm = () => {
             <span>Sign in with your email and password</span>
             <form onSubmit={handleOnSubmit} className="">
                 <FormInput
-                    inputProps = {{
+                    inputProps={{
                         labelFor: "email",
                         label: "Email",
                         labelClass: "form-input-label",
@@ -59,11 +67,11 @@ const SignInForm = () => {
                         inputClass: "form-input",
                         onChange: handleOnChange,
                         value: email,
-                        required:"required",
+                        required: "required",
                     }}
-                     />
+                />
                 <FormInput
-                    inputProps = {{
+                    inputProps={{
                         labelFor: "password",
                         label: "Password",
                         labelClass: "form-input-label",
@@ -73,12 +81,12 @@ const SignInForm = () => {
                         inputClass: "form-input",
                         onChange: handleOnChange,
                         value: password,
-                        required:"required",
+                        required: "required",
                     }}
-                     />
+                />
                 <div className="button-group">
                     <Button type="submit">Sign In</Button>
-                    <Button buttonType="google" onClick={signInWithGoogle}>Google Sign In</Button>
+                    <Button type="button" buttonType="google" onClick={signInWithGoogle}>Google Sign In</Button>
                 </div>
             </form>
         </div>
