@@ -4,9 +4,9 @@ const FormInput = ({inputProps}) => {
     return (
         <div className="form-row">
             {inputProps.label && (
-                <label htmlFor={inputProps.labelFor} className={inputProps.labelClass}>{inputProps.label}</label>
+                <label htmlFor={inputProps.labelFor} className={`${inputProps.value.length ? 'shrink' : ''} ${inputProps.labelClass}`}>{inputProps.label}</label>
             )}
-            <input name={inputProps.inputName} id={inputProps.inputId} type={inputProps.inputType} className={inputProps.inputClass} onChange={inputProps.OnChange} value={inputProps.displayName} required={inputProps.required} />
+            <input name={inputProps.inputName} id={inputProps.inputId} type={inputProps.inputType} className={inputProps.inputClass} onChange={inputProps.onChange} value={inputProps.value} required={inputProps.required} />
         </div>
     );
 };

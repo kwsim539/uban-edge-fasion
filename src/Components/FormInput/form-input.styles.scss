@@ -50,6 +50,7 @@ $main-color: black;
     &:has(+ .form-input:focus) {
       @include shrinkLabel();
     }
+
     &.shrink {
       @include shrinkLabel();
     }
