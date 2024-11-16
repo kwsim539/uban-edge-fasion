@@ -6,7 +6,7 @@ const FormInput = ({inputProps}) => {
             {inputProps.label && (
                 <label htmlFor={inputProps.labelFor} className={`${inputProps.value.length ? 'shrink' : ''} ${inputProps.labelClass}`}>{inputProps.label}</label>
             )}
-            <input name={inputProps.inputName} id={inputProps.inputId} type={inputProps.inputType} className={inputProps.inputClass} onChange={inputProps.onChange} value={inputProps.value} required={inputProps.required} />
+            <input name={inputProps.inputName}  type={inputProps.inputType} className={inputProps.inputClass} onChange={inputProps.onChange} value={inputProps.value} required={inputProps.required} />
         </div>
     );
 };

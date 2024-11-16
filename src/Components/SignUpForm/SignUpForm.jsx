@@ -1,8 +1,8 @@
 import {useState} from "react";
 import FormInput from "../FormInput/FormInput";
+import Button from "../Button/Button";
 import {createAuthUserWithEmailAndPassword, createUserDocFromAuth} from "../../utils/firebase/firebase";
 import './sign-up-form.styles.scss';
-import Button from "../Button/Button";
 
 const defaultFormFields = {
     displayName: "",
@@ -15,8 +15,6 @@ const SignUpForm = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {displayName, email, password, confirmPassword} = formFields;
-
-    /*console.log(formFields);*/
 
     const handleFormReset = () => {
         setFormFields(defaultFormFields);
@@ -63,7 +61,6 @@ const SignUpForm = () => {
                         label: "Display Name",
                         labelClass: "form-input-label",
                         inputName: "displayName",
-                        inputId: "displayName",
                         inputType: "text",
                         inputClass: "form-input",
                         onChange: handleOnChange,
@@ -77,7 +74,6 @@ const SignUpForm = () => {
                         label: "Email",
                         labelClass: "form-input-label",
                         inputName: "email",
-                        inputId: "email",
                         inputType: "text",
                         inputClass: "form-input",
                         onChange: handleOnChange,
@@ -91,7 +87,6 @@ const SignUpForm = () => {
                         label: "Password",
                         labelClass: "form-input-label",
                         inputName: "password",
-                        inputId: "password",
                         inputType: "password",
                         inputClass: "form-input",
                         onChange: handleOnChange,
@@ -105,7 +100,6 @@ const SignUpForm = () => {
                         label: "Confirm Password",
                         labelClass: "form-input-label",
                         inputName: "confirmPassword",
-                        inputId: "confirmPassword",
                         inputType: "password",
                         inputClass: "form-input",
                         onChange: handleOnChange,
