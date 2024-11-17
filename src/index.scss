@@ -17,3 +17,6 @@ a {
   text-decoration: none;
   color: #000;
 }
+#root {
+  padding: 1rem clamp(1rem, -1.7541rem + 3.5451vw, 2.5rem);
+}
