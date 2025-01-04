@@ -4,9 +4,17 @@ import CartIcon from "../../Components/CartIcon/CartIcon";
 import CartDropdown from "../../Components/CartDropdown/CartDropdown";
 import {UserContext} from "../../Context/UserContext";
 import {CartContext} from "../../Context/CartContext";
-import {ReactComponent as MainLogo} from "../../assets/crown.svg";
 import {signOutUser} from "../../utils/firebase/firebase";
-import {MainHeader, HeaderContainer, LogoWrapper, MainNav, NavList, NavItem, NavLink} from "./main-wrapper.styles";
+import {
+    MainHeader,
+    HeaderContainer,
+    LogoWrapper,
+    MainNav,
+    NavList,
+    NavItem,
+    NavLink,
+    MainLogo
+} from "./main-wrapper.styles";
 
 
 const MainWrapper = () => {
@@ -18,7 +26,7 @@ const MainWrapper = () => {
             <MainHeader>
                 <HeaderContainer>
                     <LogoWrapper to="/">
-                        <MainLogo className="logo" />
+                        <MainLogo alt="Uban Edge Fasion Logo" />
                     </LogoWrapper>
                     <MainNav>
                         <NavList role="menu">

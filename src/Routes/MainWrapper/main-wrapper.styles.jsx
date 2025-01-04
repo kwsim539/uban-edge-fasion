@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import {ReactComponent as MainLogoSvg} from "../../assets/crown.svg";
+
+export const MainLogo = styled(MainLogoSvg)`
+    width: auto;
+    height: auto;
+`
 
 export const MainHeader = styled.header`
     display: flex;

@@ -9,7 +9,7 @@ const CartIcon = () => {
 
     return (
         <CartIconContainer href="JavaScript:" onClick={toggleIsCartOpen}>
-         <ShoppingIcon className="shopping-icon" />
+         <ShoppingIcon alt="View Cart" />
          <ItemCount>{cartCount}</ItemCount>
         </CartIconContainer>
     );
