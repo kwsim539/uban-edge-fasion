@@ -6,7 +6,7 @@ import {UserContext} from "../../Context/UserContext";
 import {CartContext} from "../../Context/CartContext";
 import {ReactComponent as MainLogo} from "../../assets/crown.svg";
 import {signOutUser} from "../../utils/firebase/firebase";
-import "./main-wrapper.styles.scss";
+import {MainHeader, HeaderContainer, LogoWrapper, MainNav, NavList, NavItem, NavLink} from "./main-wrapper.styles";
 
 
 const MainWrapper = () => {
@@ -15,29 +15,29 @@ const MainWrapper = () => {
 
     return (
         <>
-            <header>
-                <div className="header-container">
-                    <Link to="/" className="logo-wrapper">
+            <MainHeader>
+                <HeaderContainer>
+                    <LogoWrapper to="/">
                         <MainLogo className="logo" />
-                    </Link>
-                    <nav className="main-nav">
-                        <ul className="nav" role="menu">
-                            <li className="nav-item"><Link className="nav-link" to="/shop">Shop</Link></li>
+                    </LogoWrapper>
+                    <MainNav>
+                        <NavList role="menu">
+                            <NavItem><Link className="nav-link" to="/shop">Shop</Link></NavItem>
                             {
                                 currentUser ? (
-                                    <li className="nav-item"><Link className="nav-link" onClick={signOutUser}>Sign
-                                        Out</Link></li>
+                                    <NavItem><NavLink onClick={signOutUser}>Sign
+                                        Out</NavLink></NavItem>
                                 ) : (
-                                    <li className="nav-item"><Link className="nav-link" to="/account">Sign In</Link>
-                                    </li>
+                                    <NavItem><NavLink to="/account">Sign In</NavLink>
+                                    </NavItem>
                                 )
                             }
                             <li className="nav-item"><CartIcon /></li>
-                        </ul>
-                    </nav>
-                </div>
+                        </NavList>
+                    </MainNav>
+                </HeaderContainer>
                 {isCartOpen && <CartDropdown/>}
-            </header>
+            </MainHeader>
             <main>
                 <Outlet/>
             </main>

@@ -1,13 +1,13 @@
-import "./form-input.styles.scss";
+import {FormInputLabel, FormInputContainer, FormRow} from "./form-input.styles";
 
 const FormInput = ({inputProps}) => {
     return (
-        <div className="form-row">
+        <FormRow>
             {inputProps.label && (
-                <label htmlFor={inputProps.labelFor} className={`${inputProps.value.length ? 'shrink' : ''} ${inputProps.labelClass}`}>{inputProps.label}</label>
+                <FormInputLabel shrink={inputProps.value.length} htmlFor={inputProps.labelFor} >{inputProps.label}</FormInputLabel>
             )}
-            <input name={inputProps.inputName}  type={inputProps.inputType} className={inputProps.inputClass} onChange={inputProps.onChange} value={inputProps.value} required={inputProps.required} />
-        </div>
+            <FormInputContainer name={inputProps.inputName}  type={inputProps.inputType} onChange={inputProps.onChange} value={inputProps.value} required={inputProps.required} />
+        </FormRow>
     );
 };
 

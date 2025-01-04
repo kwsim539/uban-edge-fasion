@@ -9,7 +9,16 @@ import {
     signOut,
     onAuthStateChanged,
 } from 'firebase/auth';
-import {getFirestore, doc, getDoc, setDoc} from 'firebase/firestore';
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    writeBatch,
+    query,
+    getDocs
+} from 'firebase/firestore';
 
 
 // Your web app's Firebase configuration
@@ -35,6 +44,69 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+// Add a new document in collection "prod_collection" in firebase DB from SHOP_DATA in shop-data.js
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
+
+    objectsToAdd.forEach((object) => {
+        const docRef = doc(collectionRef, object.title.toLowerCase());
+        batch.set(docRef, object);
+    });
+
+    await batch.commit();
+    console.log('done');
+};
+
+// Query and Retrieve data from firebase DB
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'prod_categories');
+    const q = query(collectionRef);
+    const querySnapshot = await getDocs(q);
+    // acc = accumulator
+    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+        const {title, items} = docSnapshot.data();
+        acc[title.toLowerCase()] = items;
+        return acc;
+    }, {});
+    return categoryMap;
+}
+
+/* sample schema of proc_collection in firebase
+{
+    title: 'Hats',
+    items: [
+      {
+        id: 1,
+        name: 'Brown Brim',
+        imageUrl: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+        price: 25,
+      },
+      {
+        id: 2,
+        name: 'Blue Beanie',
+        imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+        price: 18,
+      },
+    }
+    title: 'Sneakers',
+    items: [
+      {
+        id: 10,
+        name: 'Adidas NMD',
+        imageUrl: 'https://i.ibb.co/0s3pdnc/adidas-nmd.png',
+        price: 220,
+      },
+      {
+        id: 11,
+        name: 'Adidas Yeezy',
+        imageUrl: 'https://i.ibb.co/dJbG1cT/yeezy.png',
+        price: 280,
+      },
+        ]
+    },
+}
+ */
 
 export const createUserDocFromAuth = async (userAuth, additionalInfo = {}) => {
     if (!userAuth) return ;
